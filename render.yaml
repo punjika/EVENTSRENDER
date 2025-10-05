@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: EVENTSRENDER-2
+    env: production
+    region: oregon
+    plan: free
+    repo: punjika/EVENTSRENDER
+    branch: master
+    root: demo
+    buildCommand: ./mvnw -DskipTests package
+    startCommand: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/demo-0.0.1-SNAPSHOT.jar
+    # Do not store secrets here. Configure database credentials in the Render dashboard
+    # under Environment -> Add from .env (or add them manually).
