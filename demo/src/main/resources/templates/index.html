@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Schedule CRUD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Event Schedule</h1>
+        
+        <!-- Form for adding/updating events -->
+        <form th:action="/api/event-schedules/{id}" method="post">
+            <input type="hidden" id="eventId">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="venueID">Venue ID:</label>
+            <input type="text" id="venueID" name="venueID" required>
+
+            <label for="coordinatorID">Coordinator ID:</label>
+            <input type="text" id="coordinatorID" name="coordinatorID" required>
+
+            <button type="submit">Save Event</button>
+        </form>
+
+        <!-- Event List -->
+        <h2>Scheduled Events</h2>
+        <table id="eventTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Venue ID</th>
+                    <th>Coordinator ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Events will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
