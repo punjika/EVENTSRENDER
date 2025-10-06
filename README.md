@@ -59,12 +59,12 @@ java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar demo/target/demo-0.0
 - For production use, add proper migrations (Flyway/Liquibase). A temporary option is to set `SPRING_JPA_HIBERNATE_DDL_AUTO=update` to let Hibernate create missing tables on startup (not recommended long-term).
 
 ## Troubleshooting
-- If you see `Unable to access jarfile`, verify the jar exists under `demo/target` and the Dockerfile is pointing to the correct path.
+- If you see `Unable to access jarfile`, verify the jar exists under `demo/target` and the start command points to the correct path.
 - Platform build logs (Railway/Render) often show the exact failing command — paste logs here if you want me to help dig in.
 
 ---
 If you'd like I can also:
 - Add Flyway migrations (generate `V1__init.sql`) and commit them under `demo/src/main/resources/db/migration`.
-- Add a release workflow that tags Docker images.
+-- Add a release workflow that tags artifacts.
 
 Tell me which of those you'd like next and I'll implement it.

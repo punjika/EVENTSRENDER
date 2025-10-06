@@ -11,9 +11,8 @@ Render deployment steps (Spring Boot + Postgres)
 
 2) Create a new Web Service on Render
    - Connect your GitHub account and pick the repo.
-   - Environment: "Docker" or "Node"? Choose "Web Service" (the default for Java apps).
-   - Build Command: .\mvnw -DskipTests package
-   - Start Command: java -jar target/demo-0.0.1-SNAPSHOT.jar
+   - Build Command: `demo\\mvnw.cmd -f demo\\pom.xml -DskipTests package` (Windows) or `cd demo && ./mvnw -DskipTests package` (Unix)
+   - Start Command: `java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar demo/target/demo-0.0.1-SNAPSHOT.jar`
 
 3) Add Postgres on Render
    - In Render dashboard, create a new "Postgres" database.
