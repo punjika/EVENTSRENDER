@@ -6,8 +6,11 @@ services:
     plan: free
     repo: punjika/EVENTSRENDER
     branch: master
-    root: demo
-    buildCommand: ./mvnw -DskipTests package
-    startCommand: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/demo-0.0.1-SNAPSHOT.jar
+  root: demo
+  # Use a cross-platform build command that points Maven to the demo POM. Render runs on Linux so
+  # the unix wrapper will work; using -f keeps it robust if the agent runs from repo root.
+  buildCommand: ./mvnw -f demo/pom.xml -DskipTests package
+  # Start the application using the demo module's produced jar path
+  startCommand: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar demo/target/demo-0.0.1-SNAPSHOT.jar
     # Do not store secrets here. Configure database credentials in the Render dashboard
     # under Environment -> Add from .env (or add them manually).
