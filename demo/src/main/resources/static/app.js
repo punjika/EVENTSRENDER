@@ -1,7 +1,7 @@
 // Simulate database using an array
 let events = [];
 
-document.getElementById('eventForm').addEventListener('submit', function(e) {
+document.getElementById('eventForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     // Get form values
