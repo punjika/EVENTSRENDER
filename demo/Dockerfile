@@ -17,8 +17,12 @@ WORKDIR /app
 # Copy the built jar from the builder stage
 COPY --from=builder /workspace/target/demo-0.0.1-SNAPSHOT.jar /app/app.jar
 
+# Copy a small start wrapper that handles different jar locations and prints diagnostics
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
 ENV JAVA_OPTS=""
 EXPOSE 8080
 
-# Use PORT env var if provided by the platform; default 8080
-ENTRYPOINT ["sh","-c","java $JAVA_OPTS -Dserver.port=${PORT:-8080} -Dspring.profiles.active=${SPRING_PROFILES_ACTIVE:-prod} -jar /app/app.jar"]
+# Use the wrapper so the container can start even if different start commands were used elsewhere
+ENTRYPOINT ["/app/start.sh"]
